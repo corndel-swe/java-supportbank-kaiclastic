@@ -3,7 +3,7 @@ package com.corndel.supportbank.exercises;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
-@Command(name = "hello", description = "A CLI printing Hello")
+@Command(name = "hello", description = "A CLI printing Hello" , subcommands = {ColorCommand.class})
 public class HelloWorld implements Runnable{
     @Parameters(index = "0",defaultValue = "World")
     private String name;
