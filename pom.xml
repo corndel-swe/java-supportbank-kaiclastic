@@ -15,7 +15,13 @@
   <dependencies>
     <!-- TODO: Add the picocli dependency -->
     <!-- https://tech-docs.corndel.com/java/making-a-cli.html#installing-picocli -->
+    <!-- adding picocli -->
 
+    <dependency>
+      <groupId>info.picocli</groupId>
+      <artifactId>picocli</artifactId>
+      <version>4.7.6</version>
+    </dependency>
 
     <dependency>
       <groupId>com.github.tomas-langer</groupId>
