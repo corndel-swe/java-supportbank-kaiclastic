@@ -1,6 +1,5 @@
 package com.corndel.supportbank.services;
 
-import com.corndel.supportbank.models.Bill;
 import com.corndel.supportbank.models.Currency;
 import picocli.CommandLine;
 
