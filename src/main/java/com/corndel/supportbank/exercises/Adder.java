@@ -42,7 +42,6 @@ public class Adder {
     // catching errors
     catch(Exception e ) {
       System.err.println("Something went wrong");
-      //  Block of code to handle errors
       return 0;
     }
   }
