@@ -4,33 +4,13 @@ package com.corndel.supportbank.models;
 // Currency
 public class Currency {
     
-    private double amount;
-    
-    public Currency(double amount){
+    private final double amount;
+
+    public Currency(double amount , String currencyTo){
         this.amount= amount;
     }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public double convertGBP(double gpbConvert) {
-        return amount / 0.75;
-    }
-
-    public double convertUSD(double usdConvert) {
-        return amount *0.75;
-    }
-
-    @Override
-    public String toString() {
-        return "Converted{" +
-                ", amount=" + amount +
-                '}';
+    public double convertNewCurrency(double multiplier) {
+        return amount * multiplier;
     }
 }
 

@@ -1,10 +1,11 @@
 package com.corndel.supportbank.services;
 
 import com.corndel.supportbank.models.Currency;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import picocli.CommandLine;
 
 @CommandLine.Command(name = "convert")
-public class ConvertService implements Runnable{
+public class ConvertService implements Runnable {
 
     @CommandLine.Parameters(index = "0")
     private double amount;
@@ -18,13 +19,21 @@ public class ConvertService implements Runnable{
 
     @Override
     public void run() {
-        Currency currency = new Currency(amount);
-        if (from.equals("USD")){
-            System.out.println("The converted currency is " + currency.convertUSD(100));
-        } else{
-            System.out.println("The converted currency is " + currency.convertGBP(100));
+        Currency currency = new Currency(amount,to);
+        CurrencyAPI currencyAPI = new CurrencyAPI();
+        try {
+            CurrencyAPI.Rates allRates = currencyAPI.getRates();
+            System.out.println( "retrieved Rates" +allRates.rates);
+            if(from.equals("USD")){
+                Double conversionRate = allRates.rates.get(to);
+                System.out.println(conversionRate);
+               double newBalance =  currency.convertNewCurrency(conversionRate);
+                System.out.printf("%.2f %s is converted to %.2f %s%n ", amount, from, newBalance, to);
+            }
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
         }
-        System.out.println("this is the currency"+currency);
-    }
 
+
+    }
 }
