@@ -1,8 +1,13 @@
 package com.corndel.supportbank.exercises;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 // import java.nio.file.*;
 // import java.util.List;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 // import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -21,11 +26,18 @@ public class Element {
     // Hint: Use Paths.get() and Files.readAllLines()
     // Hint: Use String.join()
 
-    // TODO: Convert the json to an instance of Element
-    // Hint: Use Jackson's ObjectMapper to map the json to Element.class
-
-    // TODO: Return the Element
-    return null;
+   Path filePath = Paths.get("src", "data" ,"elements", fileName);
+   List<String> lines = Files.readAllLines(filePath);
+     System.out.println(lines);
+   String allLines =String.join("",lines);
+   // TODO: Convert the json to an instance of Elementelement
+   // Convert to JSON
+   ObjectMapper objectMapper = new ObjectMapper();
+   // Hint: Use Jackson's ObjectMapper to map the json to Element.class
+   Element elements = objectMapper.readValue(allLines, Element.class);
+   System.out.println(elements);
+// TODO: Return the Element
+   return elements;
   }
 
   /**
